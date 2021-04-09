@@ -32,7 +32,7 @@
 from nbt_utils.constant.tag_ids import tag_ids
 
 class end_tag:
-    def __init__(self):
+    def __init__(self, id: int):
         self.id: int = tag_ids.end_tag
     
     def read(self, stream: object) -> None:
