@@ -34,20 +34,20 @@ from nbt_utils.tag.end_tag import end_tag
 from nbt_utils.utils.nbt import nbt
 
 class compound_tag:
-    def __init__(self, name: str = "", value: list = []):
+    def __init__(self, name: str = "", value: list = []) -> None:
         self.id: int = tag_ids.compound_tag
         self.name: str = name
         self.value: list = value
         
     def read(self, stream: object) -> None:
-        result = []
+        result: list = []
         while not stream.feos():
             tag_id: int = stream.read_byte_tag()
-            new_tag = nbt.new_tag(tag_id)
+            new_tag: object = nbt.new_tag(tag_id)
             if isinstance(new_tag, end_tag):
                 break
             name: str = stream.read_string_tag()
-            new_tag.name = name
+            new_tag.name: str = name
             new_tag.read(stream)
             result.append(new_tag)
         self.value: list = result
@@ -76,4 +76,4 @@ class compound_tag:
         else:
             for i, v in enumerate(self.value):
                 if tag.name == v.name:
-                    self.value[i] = tag
+                    self.value[i]: object = tag
