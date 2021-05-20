@@ -37,7 +37,7 @@ setuptools.setup(
     install_requires = [
         "binary-utils"
     ],
-    version = "1.1",
+    version = "1.2",
     license = "MIT",
     description = "Podrum's NBT library.",
     author = "Podrum",
