@@ -42,21 +42,20 @@ class compound_tag:
     def read(self, stream: object) -> None:
         result = []
         while not stream.feos():
-            tag_id: int = stream.read_byte_tag()
-            new_tag = nbt.new_tag(tag_id)
+            tag_id: int = stream.read_byte_tag(nbt.new_tag(tag_id))
             if isinstance(new_tag, end_tag):
                 break
-            name: str = stream.read_string_tag()
-            new_tag.name = name
+            new_tag.name: str = stream.read_string_tag()
             new_tag.read(stream)
             result.append(new_tag)
         self.value: list = result
         
     def write(self, stream: object) -> None:
         for tag in self.value:
-            stream.write_byte_tag(tag.id)
-            stream.write_string_tag(tag.name)
-            tag.write(stream)
+            if not isinstance(tag, end_tag):
+                stream.write_byte_tag(tag.id)
+                stream.write_string_tag(tag.name)
+                tag.write(stream)
         stream.write_byte_tag(0)
         
     def get_tag(self, name: str) -> object:
