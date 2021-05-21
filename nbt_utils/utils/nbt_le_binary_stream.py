@@ -114,11 +114,14 @@ class nbt_le_binary_stream(binary_stream):
 
     def read_root_tag(self) -> object:
         if not self.feos():
-            root_container: object = compound_tag()
-            root_container.read(self)
-            return root_container.value[0]
+            new_tag: object = nbt.new_tag(self.read_byte_tag())
+            if not isinstance(new_tag, end_tag):
+                new_tag.name: str = self.read_string_tag()
+                new_tag.read(self)
+            return new_tag
 
     def write_root_tag(self, value: object) -> None:
-        root_container: object = compound_tag()
-        root_container.set_tag(value)
-        root_container.write(self)
+        self.write_byte_tag(value.id)
+        if not isinstance(value, end_tag):
+            self.write_string_tag(value.name)
+            value.write(self)
