@@ -30,6 +30,7 @@
 ################################################################################
 
 from binary_utils.binary_stream import binary_stream
+from nbt_utils.tag.compound_tag import compound_tag
 
 class nbt_be_binary_stream(binary_stream):
     def read_byte_tag(self) -> int:
@@ -110,3 +111,14 @@ class nbt_be_binary_stream(binary_stream):
     def write_string_tag(self, value: str) -> None:
         self.write_unsigned_short_be(len(value))
         self.write(value.encode())
+
+    def read_root_tag(self) -> object:
+        if not self.feos():
+            root_container: object = compound_tag()
+            root_container.read(self)
+            return root_container.value[0]
+
+    def write_root_tag(self, value: object) -> None:
+        root_container: object = compound_tag()
+        root_container.set_tag(value)
+        root_container.write(self)
