@@ -30,7 +30,8 @@
 ################################################################################
 
 from binary_utils.binary_stream import binary_stream
-from nbt_utils.tag.compound_tag import compound_tag
+from nbt_utils.tag.end_tag import end_tag
+from nbt_utils.utils.nbt import nbt
 
 class nbt_le_binary_stream(binary_stream):
     def read_byte_tag(self) -> int:
