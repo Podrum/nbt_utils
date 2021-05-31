@@ -42,7 +42,7 @@ class compound_tag:
     def read(self, stream: object) -> None:
         result = []
         while not stream.feos():
-            tag_id: int = stream.read_byte_tag(nbt.new_tag(tag_id))
+            new_tag: int = nbt.new_tag(stream.read_byte_tag())
             if isinstance(new_tag, end_tag):
                 break
             new_tag.name: str = stream.read_string_tag()
