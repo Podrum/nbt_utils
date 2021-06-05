@@ -35,10 +35,11 @@ class byte_array_tag:
     def __init__(self, name: str = "", value: list = []) -> None:
         self.id: int = tag_ids.byte_array_tag
         self.name: str = name
-        self.value: list = value
+        self.value: bytes = value
         
     def read(self, stream: object) -> None:
-        self.value: list = stream.read_byte_array_tag()
+        self.value: bytes = stream.read(stream.read_int_tag())
         
     def write(self, stream: object) -> None:
-        stream.write_byte_array_tag(self.value)
+        stream.write_int_tag(len(self.value))
+        stream.write(self.value)
