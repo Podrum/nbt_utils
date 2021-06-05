@@ -69,42 +69,6 @@ class nbt_be_binary_stream(binary_stream):
       
     def write_double_tag(self, value: float) -> None:
         self.write_double_be(value)
-        
-    def read_byte_array_tag(self) -> list:
-        byte_count: int = self.read_int_tag()
-        tag: list = []
-        for i in range(0, byte_count):
-            tag.append(self.read_byte_tag())
-        return tag
-      
-    def write_byte_array_tag(self, value: list) -> None:
-        self.write_int_tag(len(value))
-        for item in value:
-            self.write_byte_tag(item)
-            
-    def read_int_array_tag(self) -> list:
-        byte_count: int = self.read_int_tag()
-        value: list = []
-        for i in range(0, byte_count):
-            value.append(self.read_int_tag())
-        return value
-      
-    def write_int_array_tag(self, value: list) -> None:
-        self.write_int_tag(len(value))
-        for item in value:
-            self.write_int_tag(item)
-            
-    def read_long_array_tag(self) -> list:
-        byte_count: int = self.read_int_tag()
-        tag: list = []
-        for i in range(0, byte_count):
-            tag.append(self.read_long_tag())
-        return tag
-      
-    def write_long_array_tag(self, value: list) -> None:
-        self.write_int_tag(len(value))
-        for item in value:
-            self.write_long_tag(item)
             
     def read_string_tag(self) -> str:
         return self.read(self.read_unsigned_short_be()).decode()
