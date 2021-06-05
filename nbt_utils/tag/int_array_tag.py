@@ -38,7 +38,12 @@ class int_array_tag:
         self.value: list = value
         
     def read(self, stream: object) -> None:
-        self.value: list = stream.read_int_array_tag()
+        length: int = stream.read_int_tag()
+        self.value: list = []
+        for i in range(0, length):
+            self.value.append(stream.read_int_tag())
         
     def write(self, stream: object) -> None:
-        stream.write_int_array_tag(self.value)
+        stream.write_int_tag(len(self.value))
+        for tag in self.value:
+            stream.write_int_tag(tag)
