@@ -29,8 +29,8 @@
 #                                                                              #
 ################################################################################
 
-from nbt_utils.constant.tag_ids import tag_ids
 from nbt_utils.tag.end_tag import end_tag
+from nbt_utils.tag_ids import tag_ids
 from nbt_utils.utils.nbt import nbt
 
 class compound_tag:
