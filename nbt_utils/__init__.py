@@ -28,3 +28,9 @@
 # IN THE SOFTWARE.                                                             #
 #                                                                              #
 ################################################################################
+
+__all__: list = [
+    "tag_ids"
+]
+
+from nbt_utils.tag_ids import tag_ids
