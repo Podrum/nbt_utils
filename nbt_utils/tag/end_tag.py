@@ -29,7 +29,7 @@
 #                                                                              #
 ################################################################################
 
-from nbt_utils.constant.tag_ids import tag_ids
+from nbt_utils.tag_ids import tag_ids
 
 class end_tag:
     def __init__(self):
