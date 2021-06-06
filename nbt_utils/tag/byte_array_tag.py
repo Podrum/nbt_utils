@@ -36,10 +36,14 @@ class byte_array_tag:
         self.id: int = tag_ids.byte_array_tag
         self.name: str = name
         self.value: bytes = value
-        
+            
     def read(self, stream: object) -> None:
-        self.value: bytes = stream.read(stream.read_int_tag())
+        length: int = stream.read_int_tag()
+        self.value: list = []
+        for i in range(0, length):
+            self.value.append(stream.read_byte_tag())
         
     def write(self, stream: object) -> None:
         stream.write_int_tag(len(self.value))
-        stream.write(self.value)
+        for tag in self.value:
+            stream.write_byte_tag(tag)
