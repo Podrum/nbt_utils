@@ -45,9 +45,9 @@ class nbt_net_le_binary_stream(nbt_le_binary_stream):
         self.write_signed_var_long(value)
         
     def read_string_tag(self) -> str:
-        return self.read(self.read_int_tag()).decode()
+        return self.read(self.read_var_int()).decode()
       
     def write_string_tag(self, value: str) -> None:
-        self.write_int_tag(len(value))
+        self.write_var_int(len(value))
         self.write(value.encode())
             
