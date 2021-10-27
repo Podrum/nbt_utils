@@ -13,3 +13,7 @@ r"""
 """
 
 from nbt_utils.tag_identifiers import TagIdentifiers
+
+__all__ = (
+    "TagIdentifiers"
+)
