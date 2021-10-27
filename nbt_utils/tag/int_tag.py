@@ -29,16 +29,16 @@
 #                                                                              #
 ################################################################################
 
-from nbt_utils.tag_ids import tag_ids
+from nbt_utils.tag_identifiers import TagIdentifiers
 
-class int_tag:
+class IntTag:
     def __init__(self, name: str = "", value: int = 0) -> None:
-        self.id: int = tag_ids.int_tag
+        self.id: int = TagIdentifiers.INT_TAG
         self.name: str = name
         self.value: int = value
         
-    def read(self, stream: object) -> None:
-        self.value: int = stream.read_int_tag()
+    def read(self, stream) -> None:
+        self.value = stream.read_int_tag()
         
-    def write(self, stream: object) -> None:
+    def write(self, stream) -> None:
         stream.write_int_tag(self.value)
