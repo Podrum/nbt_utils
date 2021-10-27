@@ -29,21 +29,21 @@
 #                                                                              #
 ################################################################################
 
-from nbt_utils.tag_ids import tag_ids
+from nbt_utils.tag_identifiers import TagIdentifiers
 
-class int_array_tag:
+class IntArrayTag:
     def __init__(self, name: str = "", value: list = []) -> None:
-        self.id: int = tag_ids.int_array_tag
+        self.id: int = TagIdentifiers.INT_ARRAY_TAG
         self.name: str = name
         self.value: list = value
         
-    def read(self, stream: object) -> None:
+    def read(self, stream) -> None:
         length: int = stream.read_int_tag()
-        self.value: list = []
+        self.value = []
         for i in range(0, length):
             self.value.append(stream.read_int_tag())
         
-    def write(self, stream: object) -> None:
+    def write(self, stream) -> None:
         stream.write_int_tag(len(self.value))
         for tag in self.value:
             stream.write_int_tag(tag)
