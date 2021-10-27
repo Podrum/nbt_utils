@@ -29,17 +29,17 @@
 #                                                                              #
 ################################################################################
 
-class tag_ids:
-    end_tag: int = 0
-    byte_tag: int = 1
-    short_tag: int = 2
-    int_tag: int = 3
-    long_tag: int = 4
-    float_tag: int = 5
-    double_tag: int = 6
-    byte_array_tag: int = 7
-    string_tag: int = 8
-    list_tag: int = 9
-    compound_tag: int = 10
-    int_array_tag: int = 11
-    long_array_tag: int = 12
+class TagIdentifiers:
+    END_TAG: int = 0
+    BYTE_TAG: int = 1
+    SHORT_TAG: int = 2
+    INT_TAG: int = 3
+    LONG_TAG: int = 4
+    FLOAT_TAG: int = 5
+    DOUBLE_TAG: int = 6
+    BYTE_ARRAY_TAG: int = 7
+    STRING_TAG: int = 8
+    LIST_TAG: int = 9
+    COMPOUND_TAG: int = 10
+    INT_ARRAY_TAG: int = 11
+    LONG_ARRAY_TAG: int = 12
