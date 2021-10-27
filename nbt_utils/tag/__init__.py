@@ -29,32 +29,32 @@
 #                                                                              #
 ################################################################################
 
-__all__: list = [
-    "byte_array_tag",
-    "byte_tag",
-    "compound_tag",
-    "double_tag",
-    "end_tag",
-    "float_tag",
-    "int_array_tag",
-    "int_tag",
-    "list_tag",
-    "long_array_tag",
-    "long_tag",
-    "short_tag",
-    "string_tag"
-]
+from nbt_utils.tag.byte_array_tag import ByteArrayTag
+from nbt_utils.tag.byte_tag import ByteTag
+from nbt_utils.tag.compound_tag import CompoundTag
+from nbt_utils.tag.double_tag import DoubleTag
+from nbt_utils.tag.end_tag import EndTag
+from nbt_utils.tag.float_tag import FloatTag
+from nbt_utils.tag.int_array_tag import IntArrayTag
+from nbt_utils.tag.int_tag import IntTag
+from nbt_utils.tag.list_tag import ListTag
+from nbt_utils.tag.long_array_tag import LongArrayTag
+from nbt_utils.tag.long_tag import LongTag
+from nbt_utils.tag.short_tag import ShortTag
+from nbt_utils.tag.string_tag import StringTag
 
-from nbt_utils.tag.byte_array_tag import byte_array_tag
-from nbt_utils.tag.byte_tag import byte_tag
-from nbt_utils.tag.compound_tag import compound_tag
-from nbt_utils.tag.double_tag import double_tag
-from nbt_utils.tag.end_tag import end_tag
-from nbt_utils.tag.float_tag import float_tag
-from nbt_utils.tag.int_array_tag import int_array_tag
-from nbt_utils.tag.int_tag import int_tag
-from nbt_utils.tag.list_tag import list_tag
-from nbt_utils.tag.long_array_tag import long_array_tag
-from nbt_utils.tag.long_tag import long_tag
-from nbt_utils.tag.short_tag import short_tag
-from nbt_utils.tag.string_tag import string_tag
+__all__ = (
+    "ByteArrayTag",
+    "ByteTag",
+    "CompoundTag",
+    "DoubleTag",
+    "EndTag",
+    "FloatTag",
+    "IntArrayTag",
+    "IntTag",
+    "ListTag",
+    "LongArrayTag",
+    "LongTag",
+    "ShortTag",
+    "StringTag"
+)
