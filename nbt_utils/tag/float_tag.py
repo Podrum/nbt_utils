@@ -31,7 +31,7 @@
 
 from nbt_utils.tag_identifiers import TagIdentifiers
 
-class float_tag:
+class FloatTag:
     def __init__(self, name: str = "", value: float = 0.0) -> None:
         self.id: int = TagIdentifiers.FLOAT_TAG
         self.name: str = name
