@@ -29,16 +29,16 @@
 #                                                                              #
 ################################################################################
 
-from nbt_utils.tag_ids import tag_ids
+from nbt_utils.tag_identifiers import TagIdentifiers
 
-class double_tag:
+class DoubleTag:
     def __init__(self, name: str = "", value: float = 0.0) -> None:
-        self.id: int = tag_ids.double_tag
+        self.id: int = TagIdentifiers.DOUBLE_TAG
         self.name: str = name
         self.value: float = value
         
-    def read(self, stream: object) -> None:
-        self.value: float = stream.read_double_tag()
+    def read(self, stream) -> None:
+        self.value = stream.read_double_tag()
         
-    def write(self, stream: object) -> None:
+    def write(self, stream) -> None:
         stream.write_double_tag(self.value)
