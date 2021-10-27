@@ -29,47 +29,47 @@
 #                                                                              #
 ################################################################################
 
-from nbt_utils.tag_ids import tag_ids
+from nbt_utils.tag_identifiers import TagIdentifiers
 
-class nbt:
+class Nbt:
     @staticmethod
     def new_tag(tag_id: int) -> object:
-        from nbt_utils.tag.byte_array_tag import byte_array_tag
-        from nbt_utils.tag.byte_tag import byte_tag
-        from nbt_utils.tag.compound_tag import compound_tag
-        from nbt_utils.tag.double_tag import double_tag
-        from nbt_utils.tag.end_tag import end_tag
-        from nbt_utils.tag.float_tag import float_tag
-        from nbt_utils.tag.int_array_tag import int_array_tag
-        from nbt_utils.tag.int_tag import int_tag
-        from nbt_utils.tag.list_tag import list_tag
-        from nbt_utils.tag.long_array_tag import long_array_tag
-        from nbt_utils.tag.long_tag import long_tag
-        from nbt_utils.tag.short_tag import short_tag
-        from nbt_utils.tag.string_tag import string_tag
-        if tag_id == tag_ids.end_tag:
-            return end_tag()
-        if tag_id == tag_ids.byte_tag:
-            return byte_tag()
-        if tag_id == tag_ids.short_tag:
-            return short_tag()
-        if tag_id == tag_ids.int_tag:
-            return int_tag()
-        if tag_id == tag_ids.long_tag:
-            return long_tag()
-        if tag_id == tag_ids.float_tag:
-            return float_tag()
-        if tag_id == tag_ids.double_tag:
-            return double_tag()
-        if tag_id == tag_ids.byte_array_tag:
-            return byte_array_tag()
-        if tag_id == tag_ids.string_tag:
-            return string_tag()
-        if tag_id == tag_ids.list_tag:
-            return list_tag()
-        if tag_id == tag_ids.compound_tag:
-            return compound_tag()
-        if tag_id == tag_ids.int_array_tag:
-            return int_array_tag()
-        if tag_id == tag_ids.long_array_tag:
-            return long_array_tag()
+        from nbt_utils.tag.byte_array_tag import ByteArrayTag
+        from nbt_utils.tag.byte_tag import ByteTag
+        from nbt_utils.tag.compound_tag import CompoundTag
+        from nbt_utils.tag.double_tag import DoubleTag
+        from nbt_utils.tag.end_tag import EndTag
+        from nbt_utils.tag.float_tag import FloatTag
+        from nbt_utils.tag.int_array_tag import IntArrayTag
+        from nbt_utils.tag.int_tag import IntTag
+        from nbt_utils.tag.list_tag import ListTag
+        from nbt_utils.tag.long_array_tag import LongArrayTag
+        from nbt_utils.tag.long_tag import LongTag
+        from nbt_utils.tag.short_tag import ShortTag
+        from nbt_utils.tag.string_tag import StringTag
+        if tag_id == TagIdentifiers.END_TAG:
+            return EndTag()
+        if tag_id == TagIdentifiers.BYTE_TAG:
+            return ByteTag()
+        if tag_id == TagIdentifiers.SHORT_TAG:
+            return ShortTag()
+        if tag_id == TagIdentifiers.INT_TAG:
+            return IntTag()
+        if tag_id == TagIdentifiers.LONG_TAG:
+            return LongTag()
+        if tag_id == TagIdentifiers.FLOAT_TAG:
+            return FloatTag()
+        if tag_id == TagIdentifiers.DOUBLE_TAG:
+            return DoubleTag()
+        if tag_id == TagIdentifiers.BYTE_ARRAY_TAG:
+            return ByteArrayTag()
+        if tag_id == TagIdentifiers.STRING_TAG:
+            return StringTag()
+        if tag_id == TagIdentifiers.LIST_TAG:
+            return ListTag()
+        if tag_id == TagIdentifiers.COMPOUND_TAG:
+            return CompoundTag()
+        if tag_id == TagIdentifiers.INT_ARRAY_TAG:
+            return IntArrayTag()
+        if tag_id == TagIdentifiers.LONG_ARRAY_TAG:
+            return LongArrayTag()
