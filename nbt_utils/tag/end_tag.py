@@ -29,14 +29,14 @@
 #                                                                              #
 ################################################################################
 
-from nbt_utils.tag_ids import tag_ids
+from nbt_utils.tag_identifiers import TagIdentifiers
 
-class end_tag:
+class EndTag:
     def __init__(self):
-        self.id: int = tag_ids.end_tag
+        self.id: int = TagIdentifiers.END_TAG
     
-    def read(self, stream: object) -> None:
+    def read(self, stream) -> None:
         pass # Just for safety
         
-    def write(self, stream: object) -> None:
+    def write(self, stream) -> None:
         pass # Just for safety
