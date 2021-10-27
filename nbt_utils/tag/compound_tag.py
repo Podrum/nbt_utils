@@ -29,36 +29,36 @@
 #                                                                              #
 ################################################################################
 
-from nbt_utils.tag.end_tag import end_tag
-from nbt_utils.tag_ids import tag_ids
-from nbt_utils.utils.nbt import nbt
+from nbt_utils.tag.end_tag import EndTag
+from nbt_utils.tag_identifiers import TagIdentifiers
+from nbt_utils.utils.nbt import Nbt
 
-class compound_tag:
+class CompoundTag:
     def __init__(self, name: str = "", value: list = []):
-        self.id: int = tag_ids.compound_tag
+        self.id: int = TagIdentifiers.COMPOUND_TAG
         self.name: str = name
         self.value: list = value
         
-    def read(self, stream: object) -> None:
+    def read(self, stream) -> None:
         result = []
         while not stream.feos():
-            new_tag: int = nbt.new_tag(stream.read_byte_tag())
-            if isinstance(new_tag, end_tag):
+            new_tag = Nbt.new_tag(stream.read_byte_tag())
+            if isinstance(new_tag, EndTag):
                 break
-            new_tag.name: str = stream.read_string_tag()
+            new_tag.name = stream.read_string_tag()
             new_tag.read(stream)
             result.append(new_tag)
-        self.value: list = result
+        self.value = result
         
-    def write(self, stream: object) -> None:
+    def write(self, stream) -> None:
         for tag in self.value:
-            if not isinstance(tag, end_tag):
+            if not isinstance(tag, EndTag):
                 stream.write_byte_tag(tag.id)
                 stream.write_string_tag(tag.name)
                 tag.write(stream)
         stream.write_byte_tag(0)
         
-    def get_tag(self, name: str) -> object:
+    def get_tag(self, name: str):
         for tag in self.value:
             if name == tag.name:
                 return tag
@@ -69,7 +69,7 @@ class compound_tag:
                 return True
         return False
          
-    def set_tag(self, tag: object) -> None:
+    def set_tag(self, tag) -> None:
         if not self.has_tag(tag.name):
             self.value.append(tag)
         else:
