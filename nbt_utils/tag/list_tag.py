@@ -29,27 +29,27 @@
 #                                                                              #
 ################################################################################
 
-from nbt_utils.tag_ids import tag_ids
-from nbt_utils.utils.nbt import nbt
+from nbt_utils.tag_identifiers import TagIdentifiers
+from nbt_utils.utils.nbt import Nbt
 
-class list_tag:
+class ListTag:
     def __init__(self, name: str = "", value: list = [], list_type: int = 1):
-        self.id: int = tag_ids.list_tag
+        self.id: int = TagIdentifiers.LIST_TAG
         self.name: str = name
         self.value: list = value
         self.list_type: int = list_type
         
-    def read(self, stream: object) -> None:
-        self.list_type: int = stream.read_byte_tag()
+    def read(self, stream) -> None:
+        self.list_type = stream.read_byte_tag()
         size: int = stream.read_int_tag()
         result: list = []
         for i in range(0, size):
-            tag: object = nbt.new_tag(self.list_type)
+            tag = Nbt.new_tag(self.list_type)
             tag.read(stream)
             result.append(tag)
-        self.value: list = result
+        self.value = result
         
-    def write(self, stream: object) -> None:
+    def write(self, stream) -> None:
         stream.write_byte_tag(self.list_type)
         stream.write_int_tag(len(self.value))
         for item in self.value:
