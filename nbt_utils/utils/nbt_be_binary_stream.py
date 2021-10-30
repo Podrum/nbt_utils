@@ -61,7 +61,7 @@ class NbtBeBinaryStream(binary_stream):
         self.write_unsigned_short_be(len(value))
         self.write(value.encode())
 
-    def read_root_tag(self) -> object:
+    def read_root_tag(self):
         if not self.feos():
             new_tag = nbt.new_tag(self.read_byte_tag())
             if not isinstance(new_tag, end_tag):
