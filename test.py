@@ -1,4 +1,4 @@
-from nbt_utils.utils.nbt_be_binary_stream import nbt_be_binary_stream
+from nbt_utils.utils.nbt_be_binary_stream import NbtBeBinaryStream
 from nbt_utils.tag.compound_tag import CompoundTag
 import os
 
