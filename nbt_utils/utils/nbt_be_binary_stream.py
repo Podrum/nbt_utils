@@ -12,12 +12,12 @@ r"""
  of the source code. If not you may not use this file.
 """
 
-from binary_utils.binary_stream import binary_stream
-from nbt_utils.tag.end_tag import end_tag
-from nbt_utils.utils.nbt import nbt
+from binary_utils.binary_stream import BinaryStream
+from nbt_utils.tag.end_tag import EndTag
+from nbt_utils.utils.nbt import Nbt
 
 
-class NbtBeBinaryStream(binary_stream):
+class NbtBeBinaryStream(BinaryStream):
     def read_byte_tag(self) -> int:
         return self.read_byte()
       
@@ -63,14 +63,14 @@ class NbtBeBinaryStream(binary_stream):
 
     def read_root_tag(self):
         if not self.feos():
-            new_tag = nbt.new_tag(self.read_byte_tag())
-            if not isinstance(new_tag, end_tag):
+            new_tag = Nbt.new_tag(self.read_byte_tag())
+            if not isinstance(new_tag, EndTag):
                 new_tag.name = self.read_string_tag()
                 new_tag.read(self)
             return new_tag
 
-    def write_root_tag(self, value: object) -> None:
+    def write_root_tag(self, value) -> None:
         self.write_byte_tag(value.id)
-        if not isinstance(value, end_tag):
+        if not isinstance(value, EndTag):
             self.write_string_tag(value.name)
             value.write(self)
