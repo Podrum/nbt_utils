@@ -63,9 +63,9 @@ class NbtBeBinaryStream(binary_stream):
 
     def read_root_tag(self) -> object:
         if not self.feos():
-            new_tag: object = nbt.new_tag(self.read_byte_tag())
+            new_tag = nbt.new_tag(self.read_byte_tag())
             if not isinstance(new_tag, end_tag):
-                new_tag.name: str = self.read_string_tag()
+                new_tag.name = self.read_string_tag()
                 new_tag.read(self)
             return new_tag
 
