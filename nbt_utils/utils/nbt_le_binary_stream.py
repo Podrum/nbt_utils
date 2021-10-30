@@ -1,39 +1,23 @@
-################################################################################
-#                                                                              #
-#  ____           _                                                            #
-# |  _ \ ___   __| |_ __ _   _ _ __ ___                                        #
-# | |_) / _ \ / _` | '__| | | | '_ ` _ \                                       #
-# |  __/ (_) | (_| | |  | |_| | | | | | |                                      #
-# |_|   \___/ \__,_|_|   \__,_|_| |_| |_|                                      #
-#                                                                              #
-# Copyright 2021 Podrum Studios                                                #
-#                                                                              #
-# Permission is hereby granted, free of charge, to any person                  #
-# obtaining a copy of this software and associated documentation               #
-# files (the "Software"), to deal in the Software without restriction,         #
-# including without limitation the rights to use, copy, modify, merge,         #
-# publish, distribute, sublicense, and/or sell copies of the Software,         #
-# and to permit persons to whom the Software is furnished to do so,            #
-# subject to the following conditions:                                         #
-#                                                                              #
-# The above copyright notice and this permission notice shall be included      #
-# in all copies or substantial portions of the Software.                       #
-#                                                                              #
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR   #
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,     #
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  #
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER       #
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING      #
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS #
-# IN THE SOFTWARE.                                                             #
-#                                                                              #
-################################################################################
+r"""
+  ____           _
+ |  _ \ ___   __| |_ __ _   _ _ __ ___
+ | |_) / _ \ / _` | '__| | | | '_ ` _ \
+ |  __/ (_) | (_| | |  | |_| | | | | | |
+ |_|   \___/ \__,_|_|   \__,_|_| |_| |_|
+ 
+ Copyright 2021 Podrum Team.
+ 
+ This file is licensed under the GPL v2.0 license.
+ The license file is located in the root directory
+ of the source code. If not you may not use this file.
+"""
 
-from binary_utils.binary_stream import binary_stream
-from nbt_utils.tag.end_tag import end_tag
+from binary_utils.binary_stream import BinaryStream
+from nbt_utils.tag.end_tag import EndTag
 from nbt_utils.utils.nbt import nbt
 
-class nbt_le_binary_stream(binary_stream):
+
+class NbtLeBinaryStream(binary_stream):
     def read_byte_tag(self) -> int:
         return self.read_byte()
       
@@ -77,16 +61,16 @@ class nbt_le_binary_stream(binary_stream):
         self.write_unsigned_short_le(len(value))
         self.write(value.encode())
 
-    def read_root_tag(self) -> object:
+    def read_root_tag(self):
         if not self.feos():
-            new_tag: object = nbt.new_tag(self.read_byte_tag())
-            if not isinstance(new_tag, end_tag):
-                new_tag.name: str = self.read_string_tag()
+            new_tag = nbt.new_tag(self.read_byte_tag())
+            if not isinstance(new_tag, EndTag):
+                new_tag.name = self.read_string_tag()
                 new_tag.read(self)
             return new_tag
 
-    def write_root_tag(self, value: object) -> None:
+    def write_root_tag(self, value) -> None:
         self.write_byte_tag(value.id)
-        if not isinstance(value, end_tag):
+        if not isinstance(value, EndTag):
             self.write_string_tag(value.name)
             value.write(self)
