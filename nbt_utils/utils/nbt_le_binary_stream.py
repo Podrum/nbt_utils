@@ -14,10 +14,10 @@ r"""
 
 from binary_utils.binary_stream import BinaryStream
 from nbt_utils.tag.end_tag import EndTag
-from nbt_utils.utils.nbt import nbt
+from nbt_utils.utils.nbt import Nbt
 
 
-class NbtLeBinaryStream(binary_stream):
+class NbtLeBinaryStream(BinaryStream):
     def read_byte_tag(self) -> int:
         return self.read_byte()
       
@@ -63,7 +63,7 @@ class NbtLeBinaryStream(binary_stream):
 
     def read_root_tag(self):
         if not self.feos():
-            new_tag = nbt.new_tag(self.read_byte_tag())
+            new_tag = Nbt.new_tag(self.read_byte_tag())
             if not isinstance(new_tag, EndTag):
                 new_tag.name = self.read_string_tag()
                 new_tag.read(self)
