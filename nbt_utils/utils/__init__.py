@@ -13,13 +13,13 @@ r"""
 """
 
 from nbt_utils.utils.nbt import Nbt
-from nbt_utils.utils.nbt_be_binary_stream import nbt_be_binary_stream
-from nbt_utils.utils.nbt_le_binary_stream import nbt_le_binary_stream
-from nbt_utils.utils.nbt_net_le_binary_stream import nbt_net_le_binary_stream
+from nbt_utils.utils.nbt_be_binary_stream import NbtBeBinaryStream
+from nbt_utils.utils.nbt_le_binary_stream import NbtLeBinaryStream
+from nbt_utils.utils.nbt_net_le_binary_stream import NbtNetLeBinaryStream
 
 __all__ = (
     "Nbt",
-    "nbt_be_binary_stream",
-    "nbt_le_binary_stream",
-    "nbt_net_le_binary_stream"
+    "NbtBeBinaryStream",
+    "NbtLeBinaryStream",
+    "NbtNetLeBinaryStream"
 )
