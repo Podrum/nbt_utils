@@ -54,9 +54,8 @@ class CompoundTag:
         return False
          
     def set_tag(self, tag) -> None:
-        if not self.has_tag(tag.name):
-            self.value.append(tag)
-        else:
-            for i, v in enumerate(self.value):
-                if tag.name == v.name:
-                    self.value[i] = tag
+        for i, v in enumerate(self.value):
+            if tag.name == v.name:
+                self.value[i] = tag
+                return
+        self.value.append(tag)
